@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DetailsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:showIn="@layout/activity_details">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ImageView
+            android:id="@+id/scrolling_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@drawable/bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/imageview_as_background" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_marginTop="28dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/ripple_effect"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:contentDescription="@string/image_button_with_back_arrow"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+
+        <!--<android.support.constraint.Guideline
+            android:id="@+id/horizontal_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintGuide_percent="0.45"/>
+    -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/kavin"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
+            android:scaleType="centerCrop"
+            android:elevation="26dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/horizontal_middle"
+            app:layout_constraintTop_toBottomOf="@id/imageButton" />
+
+        <TextView
+            android:id="@+id/textView_name"
+            tools:text="S Kavin Raju"
+            app:layout_constraintTop_toBottomOf="@id/circle_image"
+            app:layout_constraintLeft_toLeftOf="@id/circle_image"
+            app:layout_constraintRight_toRightOf="@+id/circle_image"
+            android:layout_marginTop="16dp"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/textView_email"
+            tools:text="rajukavin25@gmail.com"
+            app:layout_constraintTop_toBottomOf="@id/textView_name"
+            app:layout_constraintLeft_toLeftOf="@id/textView_name"
+            app:layout_constraintRight_toRightOf="@+id/textView_name"
+            android:layout_marginTop="8dp"
+            style="@style/Base.TextAppearance.AppCompat.Caption"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/grey_"
+            android:clickable="true"
+            android:autoLink="email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true" />
+        <TextView
+            android:id="@+id/textView_desp"
+            android:padding="16dp"
+            tools:text= "I am an Android Developer currently persuing Google Scholarship."
+            app:layout_constraintTop_toBottomOf="@id/textView_email"
+            app:layout_constraintLeft_toLeftOf="@id/circle_image"
+            app:layout_constraintRight_toRightOf="@+id/circle_image"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            style="@style/Base.TextAppearance.AppCompat.Body2"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>

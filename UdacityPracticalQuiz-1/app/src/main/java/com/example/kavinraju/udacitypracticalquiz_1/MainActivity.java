@@ -29,12 +29,33 @@ public class MainActivity extends AppCompatActivity {
     Button buttonLogin;
     EditText editText_Name, editText_email , editText_Desp;
 
+    String key_name = "name";
+    String key_email = "email";
+    String key_desp = "desp";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         inflatViews();
+        if (savedInstanceState != null){
+            if (savedInstanceState.containsKey(key_name)){
+                editText_Name.setText(savedInstanceState.getString(key_name));
+            }
+
+            if (savedInstanceState.containsKey(key_email)){
+                editText_email.setText(savedInstanceState.getString(key_email));
+            }
+            if (savedInstanceState.containsKey(key_desp)){
+                editText_Desp.setText(savedInstanceState.getString(key_desp));
+            }
+
+
+
+        }
+
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,11 +74,28 @@ public class MainActivity extends AppCompatActivity {
 
                 loadDeatilsIntoSharredPref(name,email,desp);
 
-                startActivity(new Intent(getApplicationContext(),DetailsActivity.class));
+                Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
+                intent.putExtra("from_menu" ,false);
+                startActivity(intent);
+
                 overridePendingTransition(R.anim.slide_from_right , R.anim.slide_to_left);
 
             }
         });
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String name = editText_Name.getText().toString(); //.equals("") ? " ":editText_Name.getText().toString();
+        String email = editText_email.getText().toString(); //.equals("") ? " ":editText_email.getText().toString();
+        String desp = editText_Desp.getText().toString(); //.equals("") ? " ":editText_Desp.getText().toString();
+        outState.putString("name" , name);
+        outState.putString("email" , email);
+        outState.putString("desp" , desp);
+
+
     }
 
     private void inflatViews(){
@@ -103,7 +141,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_profile) {
+
+            Intent intent = new Intent(this,DetailsActivity.class);
+            intent.putExtra("from_menu" ,true);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_from_right , R.anim.slide_to_left);
+
             return true;
         }
 
@@ -119,8 +163,7 @@ public class MainActivity extends AppCompatActivity {
 }
 
 
-/*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+/*
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

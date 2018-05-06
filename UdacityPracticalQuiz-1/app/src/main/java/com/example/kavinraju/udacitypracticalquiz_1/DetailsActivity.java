@@ -1,12 +1,16 @@
 package com.example.kavinraju.udacitypracticalquiz_1;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -14,33 +18,28 @@ public class DetailsActivity extends AppCompatActivity {
     private String name, email, desp;
 
     TextView textViewName , textViewEmail, textViewDesp;
-    ImageButton imageButton;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         inflatViews();
         getSharedPrefDeatils();
         updateUI();
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.slide_from_left , R.anim.slide_to_right);
-            }
-        });
+
 
     }
 
     private void inflatViews(){
 
-        imageButton = findViewById(R.id.imageButton);
         textViewName = findViewById(R.id.textView_name);
         textViewEmail = findViewById(R.id.textView_email);
         textViewDesp= findViewById(R.id.textView_desp);
@@ -58,12 +57,29 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void updateUI(){
 
-        if ( name != null && email != null && desp != null ){
+        Intent intent = getIntent();
+        boolean fromMenu = intent.getBooleanExtra("from_menu", true);
 
-            textViewName.setText(name);
-            textViewEmail.setText(email);
-            textViewDesp.setText(desp);
+        if (fromMenu){
+            textViewName.setText("Demo Name");
+            textViewEmail.setText("demo@gmail.com");
+            textViewDesp.setText("This is all about Demo description");
+        } else {
+
+            if (name != null && email != null && desp != null) {
+
+                textViewName.setText(name);
+                textViewEmail.setText(email);
+                textViewDesp.setText(desp);
+            }
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        overridePendingTransition(R.anim.slide_from_left , R.anim.slide_to_right);
+        return true;
     }
 }
 /*
