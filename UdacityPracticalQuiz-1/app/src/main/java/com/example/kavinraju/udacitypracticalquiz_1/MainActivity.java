@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("from_menu" ,false);
                 startActivity(intent);
 
+                editText_Name.setText("");
+                editText_email.setText("");
+                editText_Desp.setText("");
+
                 overridePendingTransition(R.anim.slide_from_right , R.anim.slide_to_left);
 
             }
