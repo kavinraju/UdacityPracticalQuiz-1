@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="duration">300</integer>
+    <integer name="swing_anim_time">750</integer>
+    <integer name="slide_animation_duration">300</integer>
+</resources>
